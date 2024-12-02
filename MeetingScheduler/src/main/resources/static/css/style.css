@@ -1,0 +1,50 @@
+nav, #login_btn {
+    background-color: rgb(3, 88, 79);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+}
+
+.head1,
+.fa {
+    color: rgb(3, 88, 79);
+    font-weight: bold;
+}
+
+form {
+    border-radius: 4px !important;
+    max-width: 1200px;
+    height: auto;
+    margin: auto;
+    border: 1px solid rgb(3, 88, 79) !important;
+}
+
+label {
+    text-align: left !important;
+    color: black;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.btn {
+    background-color: rgb(3, 88, 79) !important;
+    font-weight: 600;
+}
+
+#dashboard_link,
+#appointment_status_link, user_link, search_link {
+
+    text-align: center;
+    color: rgb(3, 88, 79) !important;
+    background-color: white !important;
+}
+
+form {
+    border-radius: 4px !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    max-width: 390px;
+    height: auto;
+    margin: auto;
+}

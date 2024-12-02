@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Meeting Scheduler</title>
+</head>
+
+<style>
+    nav {
+        background-color: rgb(3, 88, 79);
+    }
+
+    .navbar-brand {
+        font-weight: bold;
+        color: white !important;
+    }
+
+    .head1,
+    .fa {
+        color: rgb(3, 88, 79);
+        font-weight: bold;
+    }
+
+    form {
+        border-radius: 4px !important;
+        max-width: 1200px;
+        height: auto;
+        margin: auto;
+        border: 1px solid rgb(3, 88, 79) !important;
+    }
+
+    label {
+        text-align: left !important;
+        color: black;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .btn {
+        background-color: rgb(3, 88, 79) !important;
+        font-weight: 600;
+    }
+
+    #dashboard_link,
+    #meeting_status_link {
+
+        text-align: center;
+        color: rgb(3, 88, 79) !important;
+        background-color: white !important;
+    }
+</style>
+
+<body>
+<nav class="navbar navbar-expand-sm navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="#"><i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
+            Meeting Scheduler</a>
+        <div class="ml-auto">
+            <a th:href="@{/meetingScheduler/login}" class="btn" type="button" id="dashboard_link"><i class="fa fa-sign-out" aria-hidden="true"></i> logout</a>&nbsp;&nbsp;
+        </div>
+    </div>
+</nav>
+
+
+<main>
+    <div class="container p-3 mt-3">
+        <h2 class="text p-2 text-center">Book Your Meeting</h2>
+        <div class="d-flex justify-content-center">
+
+            <form th:action="@{/meetingScheduler/meeting}" method="post" class="form-control p-4 mt-4">
+
+                <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong><span th:text="${success}"></span></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong><span th:text="${error}"></span></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="menteeId"><i class="fa fa-user"></i> Select Your Username</label>
+                            <select name="menteeId" class="form-control" id="menteeId" required>
+                                <option th:each="mentee : ${mentees}"
+                                        th:value="${mentee.id}"
+                                        th:text="${mentee.username}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="mentorId"><i class="fa fa-user"></i> Select Mentor</label>
+                            <select name="mentorId" class="form-control" id="mentorId" required>
+                                <option th:each="mentor : ${mentors}"
+                                        th:value="${mentor.id}"
+                                        th:text="${mentor.username}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="date"><i class="fa fa-clock-o"></i> Meeting Date</label>
+                            <input type="date" name="meetingDate" class="form-control" id="date" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="startTime"><i class="fa fa-clock-o"></i> Start Time</label>
+                            <input type="time" name="startTime" class="form-control" id="startTime" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mb-3">
+                            <label for="endTime"><i class="fa fa-clock-o"></i> End Time</label>
+                            <input type="time" name="endTime" class="form-control" id="endTime" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-2 mt-2 mb-3">
+                    <button class="btn text-light" type="submit">Book meeting</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+</body>
+
+</html>

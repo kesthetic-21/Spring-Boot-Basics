@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <meta charset="UTF-8">
+  <title>Meeting Scheduler</title>
+</head>
+
+<body>
+<header>
+  <nav class="navbar navbar-expand-sm navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fa fa-files-o" aria-hidden="true" style="color: white;"></i>
+        Meeting Scheduler</a>
+      <div class="ml-auto">
+        <a th:href="@{/}" class="btn" type="button" id="dashboard_link" style="color: white;">
+          <i class="fa fa-home" aria-hidden="true"></i> Home</a>&nbsp;&nbsp;
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="container p-5">
+    <div class="d-flex justify-content-center">
+
+      <form th:action="@{/meetingScheduler/register}" method="post" class="form-control p-4">
+        <div style="text-align: center;"><i class="fa fa-newspaper-o fa-4x" aria-hidden="true"></i></div>
+        <h5 class="text text-center" style="color: rgb(5, 182, 5); font-weight: bolder;">Create User Account
+        </h5>
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong><span th:text="${success}"></span></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div th:if="${exist}" class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong><span th:text="${exist}"></span></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong><span th:text="${error}"></span></strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="mb-2 mt-4">
+          <label for="username"><i class="fa fa-user-o" aria-hidden="true"></i> Username</label>
+          <label for="username"></label><input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="mb-2 mt-4">
+          <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i> Email</label>
+          <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="mb-2 mt-4">
+          <label for="password"><i class="fa fa-lock" aria-hidden="true"></i> Password</label>
+          <label for="password"></label><input type="password" id="password" name="password" class="form-control" required>
+        </div>
+
+        <div class="mb-2 mt-4">
+          <label for="role">Role:</label>
+          <select id="role" name="role" class="fa fa-lock" aria-hidden="true" required>
+            <option value="MENTEE">Mentee</option>
+            <option value="MENTOR">Mentor</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-2 mb-2 text-white" id="login_btn" style="font-weight: 700;">Create
+          Account</button>
+        <br>
+        <h6 class="text text-center text-bold mt-4">Have an account? <a th:href="@{/meetingScheduler/login}">Login</a>
+        </h6>
+      </form>
+    </div>
+  </div>
+</main>
+</body>
+
+</html>
